@@ -9,7 +9,7 @@ for (const dh of dhs)
 
 req({ type: 'chain', common: false, id: id }).then(onchainre).catch(() =>
 {
-  if (document.querySelector('#index') == null)
+  if (indexpage == null)
     openurl()
 })
 

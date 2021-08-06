@@ -1,5 +1,5 @@
 const args = new URLSearchParams(location.search)
-
+const indexpage = document.querySelector('#index');
 const server = 'http://' + args.get('ip') + ':' + args.get('port')
 const id = args.get('id')
 const header = document.querySelector('header')
@@ -12,13 +12,10 @@ function appendHTML(element, html)
 function openurl(url = '')
 {
   const index = url.indexOf('#')
-  open(
-    '../' + (
-      index > 0 ?
-        url.slice(0, index) + location.search + url.slice(index) : url + location.search
-    ),
-    '_self'
-  )
+
+  location.href = location.href.slice(0, location.href.indexOf('?')) +
+    (indexpage == null ? '/../' : '') +
+    (index > 0 ? url.slice(0, index) + location.search + url.slice(index) : url + location.search)
 }
 
 function err(data, desc)
