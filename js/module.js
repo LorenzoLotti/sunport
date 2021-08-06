@@ -14,9 +14,9 @@ function open(url = '')
   const index = url.indexOf('#')
 
   if (index > 0)
-    location = '../' + url.slice(0, index) + location.search + url.slice(index)
+    location = url.slice(0, index) + location.search + url.slice(index)
   else
-    location = '../' + url + location.search
+    location = url + location.search
 }
 
 function err(data, desc)
