@@ -7,7 +7,11 @@ for (const dh of dhs)
   dh.onclick = () =>
     open(dh.getAttribute('data-href'))
 
-req({ type: 'chain', common: false, id: id }).then(onchainre).catch(() => open())
+req({ type: 'chain', common: false, id: id }).then(onchainre).catch(() =>
+{
+  if (document.querySelector('#index') == null)
+    open()
+})
 
 req({ type: 'admin', common: false, id: id }).then(data =>
 {
