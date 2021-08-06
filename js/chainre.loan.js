@@ -11,7 +11,7 @@ function onchainre(data)
       document.querySelector('form').onsubmit = () =>
       {
         document.querySelector('.loading').classList.add('animating')
-        const loanid = Math.random().toString(36).substr(2)
+        const loanid = Math.random().toString(36).slice(2)
 
         setTimeout(() =>
         {

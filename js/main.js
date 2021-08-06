@@ -1,7 +1,7 @@
 const dhs = document.querySelectorAll('[data-href]')
 
 if (location.pathname.includes('/index'))
-  location.pathname = location.pathname.substring(0, location.pathname.indexOf('/index')) + '/'
+  location.pathname = location.pathname.slice(0, location.pathname.indexOf('/index')) + '/'
 
 for (const dh of dhs)
   dh.onclick = () =>
