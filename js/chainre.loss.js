@@ -5,7 +5,7 @@ function onchainre(data)
     const result = solvechain(data.chain, id)
 
     if (result.end)
-      open()
+      openurl()
     else
     {
       document.querySelector('form').onsubmit = () =>
@@ -27,7 +27,7 @@ function onchainre(data)
             else
               alert('ERROR:\n' + data.desc)
 
-            open()
+            openurl()
           })
         }, 500)
 
@@ -38,5 +38,5 @@ function onchainre(data)
     }
   }
   else
-    open()
+    openurl()
 }

@@ -1,16 +1,16 @@
 const dhs = document.querySelectorAll('[data-href]')
 
 if (location.pathname.includes('/index'))
-  location.pathname = location.pathname.slice(0, location.pathname.indexOf('/index')) + '/'
+  openurl()
 
 for (const dh of dhs)
   dh.onclick = () =>
-    open(dh.getAttribute('data-href'))
+    openurl(dh.getAttribute('data-href'))
 
 req({ type: 'chain', common: false, id: id }).then(onchainre).catch(() =>
 {
   if (document.querySelector('#index') == null)
-    open()
+    openurl()
 })
 
 req({ type: 'admin', common: false, id: id }).then(data =>

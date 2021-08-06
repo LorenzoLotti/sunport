@@ -9,14 +9,16 @@ function appendHTML(element, html)
   element.insertAdjacentHTML('beforeend', html)
 }
 
-function open(url = '')
+function openurl(url = '')
 {
   const index = url.indexOf('#')
-
-  if (index > 0)
-    location = url.slice(0, index) + location.search + url.slice(index)
-  else
-    location = url + location.search
+  open(
+    '../' + (
+      index > 0 ?
+        url.slice(0, index) + location.search + url.slice(index) : url + location.search
+    ),
+    '_self'
+  )
 }
 
 function err(data, desc)

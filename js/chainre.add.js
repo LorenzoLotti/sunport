@@ -9,7 +9,7 @@ function onchainre(data)
       appendHTML(select, '<option>' + key + '</option>')
 
     if (result.end)
-      open()
+      openurl()
     else
     {
       document.querySelector('form').onsubmit = () =>
@@ -32,7 +32,7 @@ function onchainre(data)
             else
               alert('ERROR:\n' + data.desc)
 
-            open()
+            openurl()
           })
         }, 500)
 
@@ -43,5 +43,5 @@ function onchainre(data)
     }
   }
   else
-    open()
+    openurl()
 }

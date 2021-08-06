@@ -5,7 +5,7 @@ function onchainre(data)
     const result = solvechain(data.chain, id)
 
     if (result.end)
-      open()
+      openurl()
     else
     {
       const panel = document.querySelector('.chain-panel')
@@ -17,5 +17,5 @@ function onchainre(data)
     }
   }
   else
-    open()
+    openurl()
 }
