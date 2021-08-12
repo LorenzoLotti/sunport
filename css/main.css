@@ -118,6 +118,14 @@ button.big {
   border-radius: 1rem;
 }
 
+#end {
+  padding: 1.25rem;
+}
+
+#end h2 {
+  padding-bottom: .25rem;
+}
+
 #common:target ~ main .heading::before {
   content: 'COMMON ';
 }
@@ -336,6 +344,10 @@ main.centered-hv {
 .shadow {
   font-size: .75rem;
   color: #A3A3A3;
+}
+
+.negative {
+  color: red;
 }
 
 .common-true::after {

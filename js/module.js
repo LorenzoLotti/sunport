@@ -40,7 +40,7 @@ function getloan(chain, loanid) {
 function solvechain(chain, id)
 {
   const n = Object.keys(chain[0]).length
-  let result = { end: false, money: chain[0][id] }
+  let result = { end: false, money: chain[0][id], users: n }
 
   for (var i = 1; i < chain.length; i++)
   {
@@ -110,7 +110,7 @@ function getH(div, node)
     node.common ? /*html*/ `<p><span class="commonhash">#common<span></p>` : ''
   )
 
-  return h;
+  return h
 }
 
 function createChainNode(node, chain)
@@ -206,14 +206,14 @@ function createLoansNode(node)
       <span class="shadow common-${node.common}"></span>
       <p>${node.desc}</p>
       <br>
-      <span class="money" data-value="${node.money}">&#128184;</span>
-      <!-- Money with Wings -->
+      <span class="money" data-value="${node.money}">&#128184;</span> <!-- Money with Wings -->
       <button class="myloans"></button>
     `
   )
 
   div.querySelector('button').onclick = () =>
   {
+    this.onclick = () => { }
     document.querySelector('.loading').classList.add('animating')
 
     setTimeout(() =>

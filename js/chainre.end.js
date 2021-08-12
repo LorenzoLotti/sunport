@@ -10,6 +10,7 @@ function onchainre(data)
     {
       document.querySelector('.the-red-button').onclick = () =>
       {
+        this.onclick = () => { }
         document.querySelector('.loading').classList.add('animating')
 
         setTimeout(() =>

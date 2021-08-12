@@ -7,7 +7,40 @@ function onchainre(data)
     if (result.end)
     {
       document.querySelector('#start').classList.add('hidden')
-      document.querySelector('#end').classList.remove('hidden')
+      const end = document.querySelector('#end')
+      end.classList.remove('hidden')
+
+      for (const id in data.chain[0])
+      {
+        appendHTML(
+          end,
+          /*html*/
+          `
+            <h2>
+              ${id}:&nbsp;
+              <span class="money" data-value="${solvechain(data.chain, id).money}">&#128184;</span>
+              <!-- Money with Wings -->
+            </h2>
+          `
+        )
+      }
+
+      if (result.money < 0)
+      {
+        appendHTML(
+          end,
+          /*html*/
+          `
+            <br>
+            <h1 class="negative">
+              You owe
+              <span class="money" data-value="${result.money / -(--result.users)}">&#128184;</span>
+              <!-- Money with Wings -->
+              each.
+            </h1>
+          `
+        )
+      }
     }
     else
     {
