@@ -6,7 +6,7 @@ function onchainre(data)
     const result = solvechain(data.chain, id)
 
     for (const key in data.chain[0])
-      appendHTML(select, '<option>' + key + '</option>')
+      appendHTML(select, /*html*/ `<option>${key}</option>`)
 
     if (result.end)
       openurl()

@@ -1,8 +1,9 @@
 const args = new URLSearchParams(location.search)
-const indexpage = document.querySelector('#index');
-const server = 'http://' + args.get('ip') + ':' + args.get('port')
+const indexpage = document.querySelector('#index')
+const server = `http://${args.get('ip')}:${args.get('port')}`
 const id = args.get('id')
 const header = document.querySelector('header')
+let withPermissions = null
 
 function appendHTML(element, html)
 {
@@ -61,8 +62,12 @@ function solvechain(chain, id)
         break
 
       case 'return':
-        if (node.id == id)
-          result.money += getloan(chain, node.loanid)?.money ?? 0
+        const loan = getloan(chain, node.loanid)
+
+        if (node.common)
+          result.money += (loan?.money / n) ?? 0
+        else if (node.id == id)
+          result.money += loan?.money ?? 0
         break
 
       case 'end':
@@ -81,58 +86,85 @@ function updateHeader(money)
   document.documentElement.style.setProperty('--header-height', header.offsetHeight + 'px')
 }
 
+function getH(div, node)
+{
+  const h = {}
+  h.loanID = () => appendHTML(div, /*html*/ `<span class="shadow">${node.loanid}<span>`)
+  h.id = () => appendHTML(div, /*html*/ `<p>ID: ${node.id}</p>`)
+  h.toID = () => appendHTML(div, /*html*/ `<p>to: ${node.toid}</p>`)
+
+  h.money = (prefix = '') => appendHTML(
+    div,
+    /*html*/
+    `
+      <p>
+        money: <span class="money" data-value="${prefix}${node.money}"></span>
+      </p>
+    `
+  )
+
+  h.desc = () => appendHTML(div, /*html*/ `<p>description: <i>${node.desc}</i></p>`)
+
+  h.common = () => appendHTML(
+    div,
+    node.common ? /*html*/ `<p><span class="commonhash">#common<span></p>` : ''
+  )
+
+  return h;
+}
+
 function createChainNode(node, chain)
 {
   node.type ??= 'start'
   const div = document.createElement('div')
-  appendHTML(div, '<div></div><div></div><div></div><h3>' + node.type.toUpperCase() + '</h3>')
-  const hLoanID = () => appendHTML(div, '<span class="shadow">' + node.loanid + '<span>')
-  const hID = () => appendHTML(div, '<p>ID: ' + node.id + '</p>')
-  const hToID = () => appendHTML(div, '<p>to: ' + node.toid + '</p>')
+  const h = getH(div, node)
 
-  const hMoney = (prefix = '') => appendHTML(
+  appendHTML(
     div,
-    '<p>money: <span class="money" data-value="' + prefix + node.money + '"></span></p>'
-  )
-
-  const hDesc = () => appendHTML(div, '<p>description: <i>' + node.desc + '</i></p>')
-
-  const hCommon = () => appendHTML(
-    div,
-    node.common ? '<p><span class="shadow">#common<span></p>' : ''
+    /*html*/
+    `
+      <div></div>
+      <div></div>
+      <div></div>
+      <h3>${node.type.toUpperCase()}</h3>
+    `
   )
 
   switch (node.type)
   {
     case 'loss':
       div.style.setProperty('--main-color', 'orange')
-      hID()
-      hMoney('-')
-      hDesc()
-      hCommon()
+      h.id()
+      h.money('-')
+      h.desc()
+      h.common()
       break
 
     case 'loan':
       div.style.setProperty('--main-color', 'violet')
-      hLoanID()
-      hID()
-      hMoney('-')
-      hDesc()
-      hCommon()
+      h.loanID()
+      h.id()
+      h.money('-')
+      h.desc()
+      h.common()
       break
 
     case 'add':
       div.style.setProperty('--main-color', 'limegreen')
-      hID()
-      hToID()
-      hMoney()
-      hDesc()
+      h.id()
+      h.toID()
+      h.money()
+      h.desc()
       break
 
     case 'return':
       div.style.setProperty('--main-color', 'dodgerblue')
-      hLoanID()
-      hID()
+      const lh = getH(div, getloan(chain, node.loanid))
+      h.loanID()
+      h.id()
+      lh.money()
+      lh.desc()
+      h.common()
       break
 
     default:
@@ -142,15 +174,62 @@ function createChainNode(node, chain)
       {
         appendHTML(
           div,
-          '<p>' + key + ': <span class="money" data-value="' + node[key] +
-            '"></span> &nbsp; &rarr; &nbsp; <span class="money" data-value="' +
-            solvechain(chain, key).money + '"></span></p>'
+          /*html*/
+          `
+            <p>
+              ${key}: <span class="money" data-value="${node[key]}"></span>
+              &nbsp; &rarr; &nbsp;
+              <span class="money" data-value="${solvechain(chain, key).money}"></span>
+            </p>
+          `
         )
       }
       return div
   }
 
-  appendHTML(div, '<span class="shadow">' + node.time + '</span>')
+  appendHTML(div, /*html*/ `<span class="shadow">${node.time}</span>`)
+  return div
+}
+
+function createLoansNode(node)
+{
+  const div = document.createElement('div')
+  div.id = 'id-' + node.loanid
+
+  if (node.common)
+    div.classList.add('admin')
+
+  appendHTML(
+    div,
+    /*html*/
+    `
+      <span class="shadow common-${node.common}"></span>
+      <p>${node.desc}</p>
+      <br>
+      <span class="money" data-value="${node.money}">&#128184;</span>
+      <!-- Money with Wings -->
+      <button class="myloans"></button>
+    `
+  )
+
+  div.querySelector('button').onclick = () =>
+  {
+    document.querySelector('.loading').classList.add('animating')
+
+    setTimeout(() =>
+    {
+      req({ type: 'return', common: node.common, id: id, loanid: node.loanid }).then(data =>
+      {
+        if (noerr(data, 'req_ok'))
+          alert('Chain updated!')
+        else
+          alert('ERROR:\n' + data.desc)
+
+        openurl()
+      })
+    }, 500)
+  }
+
   return div
 }
 

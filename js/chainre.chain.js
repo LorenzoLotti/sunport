@@ -11,7 +11,7 @@ function onchainre(data)
       const panel = document.querySelector('.chain-panel')
 
       for (const node of data.chain)
-        panel.appendChild(createChainNode(node, data.chain))
+        panel.append(createChainNode(node, data.chain))
 
       updateHeader(result.money)
     }

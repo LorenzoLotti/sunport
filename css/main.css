@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 @keyframes blink {
-
   50% {
     --bg: red;
     --corner-color: #B00;
@@ -84,6 +83,10 @@ input, select {
   color: white;
   background: #222;
   margin-bottom: 1.3rem;
+}
+
+p {
+  word-wrap: break-word;
 }
 
 button {
@@ -189,7 +192,7 @@ button.big {
 }
 
 .hidden, body:not(.admin) :not(body).admin {
-  display: none;
+  display: none !important;
 }
 
 .invisible {
@@ -284,13 +287,59 @@ main.centered-hv {
   background: var(--main-color);
 }
 
+.commonhash {
+  color: var(--main-color);
+}
+
+.loans-panel {
+  text-align: left;
+  padding: 1rem;
+}
+
+.loans-panel > div {
+  background: #222;
+  width: 100%;
+  padding: 1.75rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 5px #1B1B1B;
+}
+
+.loans-panel p {
+  margin-top: 0;
+}
+
+.loans-panel .money {
+  font-size: 1.75rem;
+  line-height: 2rem;
+  vertical-align: bottom;
+}
+
+.loans-panel button {
+  font-size: 1rem;
+  height: 2rem;
+  padding: 0 .5rem;
+  border-radius: .5rem;
+  box-shadow: 0 0 .5rem #111;
+  float: right;
+}
+
+.loans-panel button::after {
+  content: 'Return';
+}
+
+.empty-message {
+  display: inline-block;
+  width: 100%;
+}
+
 .shadow {
   font-size: .75rem;
   color: #A3A3A3;
 }
 
-p .shadow {
-  font-size: 1rem;
+.common-true::after {
+  content: '#common';
 }
 
 @media (min-width: 33rem) {
