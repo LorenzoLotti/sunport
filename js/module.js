@@ -1,6 +1,6 @@
 const args = new URLSearchParams(location.search)
 const indexpage = document.querySelector('#index')
-const server = `http://${args.get('ip')}:${args.get('port')}`
+const server = `//${args.get('ip')}:${args.get('port')}`
 const id = args.get('id')
 const header = document.querySelector('header')
 let withPermissions = null
