@@ -7,16 +7,22 @@ for (const dh of dhs)
   dh.onclick = () =>
     openurl(dh.getAttribute('data-href'))
 
-req({ type: 'chain', common: false, id: id }).then(onchainre ?? (() => { })).catch(() =>
+req({ type: 'chain', common: false, id: id }).then(() =>
+{
+  if (onchainre != null)
+  {
+    onchainre();
+
+    req({ type: 'admin', common: false, id: id }).then(data =>
+    {
+      if (err(data, 'req::admin'))
+        document.body.classList.add('admin')
+
+      withPermissions()
+    })
+  }
+}).catch(() =>
 {
   if (indexpage == null)
     openurl()
-})
-
-req({ type: 'admin', common: false, id: id }).then(data =>
-{
-  if (err(data, 'req::admin'))
-    document.body.classList.add('admin')
-
-  withPermissions()
 })
