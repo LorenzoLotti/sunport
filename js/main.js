@@ -18,5 +18,5 @@ req({ type: 'admin', common: false, id: id }).then(data =>
   if (err(data, 'req::admin'))
     document.body.classList.add('admin')
 
-  withPermissions?.()
+  withPermissions()
 })

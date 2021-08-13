@@ -6,7 +6,7 @@ const addr = args.get('addr');
 const id = args.get('id')
 const server = `http${secure == null ? '' : 's' }://${addr}${port == null ? '' : ':' + port}`
 const header = document.querySelector('header')
-let withPermissions = null
+let withPermissions = () => { }
 
 function appendHTML(element, html)
 {
