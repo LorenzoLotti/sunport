@@ -12,16 +12,16 @@ The file is initialized like this:
 	"chain":
 	[
 		{
-			<ID>: <MONEY:number>,
-			<ID>: <MONEY:number>,
-			<ID>: <MONEY:number>,
+			<USER_ID>: <MONEY:number>,
+			<USER_ID>: <MONEY:number>,
+			<USER_ID>: <MONEY:number>,
 			...
 		}
 	]
 }
 ```
 
-where `<ID>` is a user ID and `<MONEY>` is a JSON number which represents the user's initial amount of money.
+where `<USER_ID>` is a user ID and `<MONEY>` is a JSON number which represents the user's initial amount of money.
 
 `chain.json` will be modified every time a user performs an operation such as a money loss by appending objects to the `"chain"` array. \
 [See 'Other types requests' ...](other_requests.md)

@@ -1,6 +1,6 @@
 # OPTIONS requests.
 
-If a Sunport server receives an OPTIONS request, the response will be:
+If a Sunport server receives an OPTIONS request, the response is:
 
 ```http
 HTTP/1.1 200 OK

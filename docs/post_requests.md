@@ -120,5 +120,18 @@ Every JSON document has three keys in common:
 }
 ```
 
+## POST requests response.
+
+Regardless of `"type"`, the response headers will always be like this:
+
+```http
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+Content-Type: application/json
+Content-Length: <BYTES:number>
+```
+
+where `<BYTES>` is the number of bytes of the response's JSON.
+
 | [< PREVIOUS](options_requests.md) | [NEXT >](chain_requests.md) |
 |:---------------------------------:|:---------------------------:|
