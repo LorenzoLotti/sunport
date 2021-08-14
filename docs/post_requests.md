@@ -120,7 +120,5 @@ Every JSON document has three keys in common:
 }
 ```
 
-<style>table{width:100%} th{width:50%}</style>
-
 | [< PREVIOUS](options_requests.md) | [NEXT >](chain_requests.md) |
 |:---------------------------------:|:---------------------------:|

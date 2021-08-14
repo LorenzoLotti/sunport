@@ -26,7 +26,5 @@ where `<ID>` is a user ID and `<MONEY>` is a JSON number which represents the us
 `chain.json` will be modified every time a user performs an operation such as a money loss by appending objects to the `"chain"` array. \
 [See 'Other types requests' ...](other_requests.md)
 
-<style>table{width:100%} th{width:50%}</style>
-
-|   | [NEXT >](options_requests.md) |
-|:-:|:-----------------------------:|
+| [NEXT >](options_requests.md) |
+|:-----------------------------:|
