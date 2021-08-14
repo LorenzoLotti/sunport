@@ -128,7 +128,7 @@ Regardless of `"type"`, the response headers will always be like this:
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: *
 Content-Type: application/json
-Content-Length: <BYTES:number>
+Content-Length: <BYTES>
 ```
 
 where `<BYTES>` is the number of bytes of the response's JSON.
