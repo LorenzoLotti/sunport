@@ -35,7 +35,7 @@ Every JSON document has three keys in common:
 {
 	"type": "chain",
 	"common": false,
-	"id": <USER_ID string>,
+	"id": <USER_ID:string>,
 }
 ```
 
@@ -47,7 +47,7 @@ Every JSON document has three keys in common:
 {
 	"type": "admin",
 	"common": false,
-	"id": <USER_ID string>,
+	"id": <USER_ID:string>,
 }
 ```
 
@@ -59,10 +59,10 @@ Every JSON document has three keys in common:
 {
 	"type": "add",
 	"common": false,
-	"id": <USER_ID string>,
-	"toid": <RECIPIENT_USER_ID string>,
-	"money": <MONEY number>,
-	"desc": <DESCRIPTION string>
+	"id": <USER_ID:string>,
+	"toid": <RECIPIENT_USER_ID:string>,
+	"money": <MONEY:number>,
+	"desc": <DESCRIPTION:string>
 }
 ```
 
@@ -74,7 +74,7 @@ Every JSON document has three keys in common:
 {
 	"type": "end",
 	"common": false,
-	"id": <USER_ID string>,
+	"id": <USER_ID:string>,
 }
 ```
 
@@ -85,10 +85,10 @@ Every JSON document has three keys in common:
 ```json
 {
 	"type": "loss",
-	"common": <IS_COMMON boolean>,
-	"id": <USER_ID string>,
-	"money": <MONEY number>,
-	"desc": <DESCRIPTION string>
+	"common": <IS_COMMON:boolean>,
+	"id": <USER_ID:string>,
+	"money": <MONEY:number>,
+	"desc": <DESCRIPTION:string>
 }
 ```
 
@@ -99,11 +99,11 @@ Every JSON document has three keys in common:
 ```json
 {
 	"type": "loan",
-	"common": <IS_COMMON boolean>,
-	"id": <USER_ID string>,
-	"loanid": <LOAN_ID string>,
-	"money": <MONEY number>,
-	"desc": <DESCRIPTION string>
+	"common": <IS_COMMON:boolean>,
+	"id": <USER_ID:string>,
+	"loanid": <LOAN_ID:string>,
+	"money": <MONEY:number>,
+	"desc": <DESCRIPTION:string>
 }
 ```
 
@@ -114,9 +114,9 @@ Every JSON document has three keys in common:
 ```json
 {
 	"type": "return",
-	"common": <IS_COMMON boolean>,
-	"id": <USER_ID string>,
-	"loanid": <LOAN_ID string>,
+	"common": <IS_COMMON:boolean>,
+	"id": <USER_ID:string>,
+	"loanid": <LOAN_ID:string>,
 }
 ```
 

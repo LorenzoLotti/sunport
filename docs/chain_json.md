@@ -12,9 +12,9 @@ The file is initialized like this:
 	"chain":
 	[
 		{
-			<ID>: <MONEY number>,
-			<ID>: <MONEY number>,
-			<ID>: <MONEY number>,
+			<ID>: <MONEY:number>,
+			<ID>: <MONEY:number>,
+			<ID>: <MONEY:number>,
 			...
 		}
 	]
