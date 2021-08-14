@@ -1,8 +1,8 @@
 const args = new URLSearchParams(location.search)
 const indexpage = document.querySelector('#index')
-const secure = args.get('secure');
-const port = args.get('port');
-const addr = args.get('addr');
+const secure = args.get('secure')
+const port = args.get('port')
+const addr = args.get('addr')
 const id = args.get('id')
 const server = `http${secure == null ? '' : 's' }://${addr}${port == null ? '' : ':' + port}`
 const header = document.querySelector('header')

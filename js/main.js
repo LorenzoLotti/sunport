@@ -11,7 +11,7 @@ req({ type: 'chain', common: false, id: id }).then((data) =>
 {
   if (onchainre != null)
   {
-    onchainre(data);
+    onchainre(data)
 
     req({ type: 'admin', common: false, id: id }).then(data =>
     {
