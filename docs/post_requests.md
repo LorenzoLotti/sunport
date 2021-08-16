@@ -10,8 +10,11 @@ Every JSON document has three keys in common:
 | `"common"` | `boolean` | `true` if the request affects all the users. |
 | `"id"`     | `string`  | ID of the user who sent the request.         |
 
-> **`"common"`** should only be **`true` IF `"id"` IS AN ADMIN ID**. \
-> [See '`admin` type requests' ...](admin_requests.md)
+> **`"common"`** should only be **`true` IF `"id"` IS AN ADMIN ID**.
+>
+> **`"id"`** should only be an **EXISTING USER ID**.
+>
+> [See 'Invalid POST requests' ...](invalid_requests.md)
 
 ## Request types (`"type"` values).
 
@@ -35,7 +38,7 @@ Every JSON document has three keys in common:
 {
 	"type": "chain",
 	"common": false,
-	"id": <USER_ID:string>,
+	"id": <USER_ID:string>
 }
 ```
 
@@ -47,7 +50,7 @@ Every JSON document has three keys in common:
 {
 	"type": "admin",
 	"common": false,
-	"id": <USER_ID:string>,
+	"id": <USER_ID:string>
 }
 ```
 
@@ -74,7 +77,7 @@ Every JSON document has three keys in common:
 {
 	"type": "end",
 	"common": false,
-	"id": <USER_ID:string>,
+	"id": <USER_ID:string>
 }
 ```
 
@@ -116,13 +119,13 @@ Every JSON document has three keys in common:
 	"type": "return",
 	"common": <IS_COMMON:boolean>,
 	"id": <USER_ID:string>,
-	"loanid": <LOAN_ID:string>,
+	"loanid": <LOAN_ID:string>
 }
 ```
 
 ## POST requests response.
 
-Regardless of `"type"`, the response headers will always be like this:
+Regardless of `"type"`, the response's headers for a POST request will always be like this:
 
 ```http
 HTTP/1.1 200 OK
@@ -133,5 +136,5 @@ Content-Length: <BYTES>
 
 where `<BYTES>` is the number of bytes of the response's JSON.
 
-| [< PREVIOUS](options_requests.md) | [NEXT >](chain_requests.md) |
-|:---------------------------------:|:---------------------------:|
+| [< PREVIOUS](options_requests.md) | [NEXT >](invalid_requests.md) |
+|:---------------------------------:|:-----------------------------:|
