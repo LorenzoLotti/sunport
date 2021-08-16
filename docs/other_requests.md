@@ -6,6 +6,5 @@ If a Sunport server receives a request which method isn't POST or OPTIONS (for e
 HTTP/1.1 405 Method Not Allowed
 ```
 
-
 | [< PREVIOUS](generic_requests.md) |
-|:-------------------------------:|
+|:---------------------------------:|
