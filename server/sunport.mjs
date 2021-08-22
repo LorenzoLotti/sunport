@@ -39,9 +39,10 @@ http.createServer((req, res) =>
       req.on('end', () =>
       {
         req.doc = JSON.parse(req.body)
+        const chainObj = JSON.parse(fs.readFileSync('chain.json'))
         const admin = req.doc.id.startsWith('_')
 
-        if (req.doc.common && !admin)
+        if (!(req.doc.id in chainObj.chain[0]) || req.doc.common && !admin)
           res.doc = { error: true, desc: 'access_denied' }
         else if ((req.doc.type == 'add' || req.doc.type == 'end') && !admin)
           res.doc = { error: true, desc: 'access_denied:' + req.doc.type }
@@ -50,7 +51,7 @@ http.createServer((req, res) =>
           switch (req.doc.type)
           {
             case 'chain':
-              res.body = fs.readFileSync('chain.json')
+              res.doc = chainObj
               break
 
             case 'admin':
@@ -58,7 +59,6 @@ http.createServer((req, res) =>
               break
 
             default:
-              const chainObj = JSON.parse(fs.readFileSync('chain.json'))
               chainObj.chain.push(req.doc)
               fs.writeFileSync('chain.json', JSON.stringify(chainObj))
               res.doc = { error: false, desc: 'req_ok' }
@@ -66,7 +66,7 @@ http.createServer((req, res) =>
           }
         }
 
-        res.body ??= JSON.stringify(res.doc)
+        res.body = JSON.stringify(res.doc)
         res.setHeader('Access-Control-Allow-Origin', '*')
         res.setHeader('Content-Type', 'application/json')
         res.setHeader('Content-Length', res.body.length)
