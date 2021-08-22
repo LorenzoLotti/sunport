@@ -1,6 +1,8 @@
 import * as fs from 'fs'
 import * as http from 'http'
 
+const port = 8080
+
 if (!fs.existsSync('chain.json'))
 {
   fs.writeFileSync(
@@ -19,7 +21,11 @@ if (!fs.existsSync('chain.json'))
       ]
     }, null, '\t')
   )
+
+  console.log('chain.json file generated')
 }
+
+console.log('Listening to port ' + port)
 
 http.createServer((req, res) =>
 {
@@ -79,4 +85,4 @@ http.createServer((req, res) =>
       res.end()
       break
   }
-}).listen(8080)
+}).listen(port)
