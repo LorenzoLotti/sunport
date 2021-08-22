@@ -1,4 +1,4 @@
-# The Sunport Standard documentation
+# The Sunport Standard documentation.
 
 1. [The `chain.json` file.](chain_json.md)
 2. [OPTIONS requests.](options_requests.md)
@@ -8,3 +8,11 @@
 6. [`admin` type requests.](admin_requests.md)
 7. [Other types requests.](generic_requests.md)
 8. [Other HTTP methods requests.](other_requests.md)
+
+# The Sunport Standard official implementation.
+
+There is a Sunport Standard official implementation written in JS: [sunport.mjs](../server/sunport.mjs).
+
+To run the module:
+
+	node sunport.mjs
